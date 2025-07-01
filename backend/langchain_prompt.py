@@ -1,17 +1,13 @@
-from huggingface_hub import InferenceClient
 import os
-import json
 import re
+import json
+from huggingface_hub import InferenceClient
 from dotenv import load_dotenv
 
 load_dotenv()
 
-# client = InferenceClient(
-#     "google/flan-t5-large",
-#     token=os.getenv("HUGGINGFACEHUB_API_TOKEN")
-# )
 client = InferenceClient(
-    "meta-llama/Llama-2-7b-chat-hf",
+    model="meta-llama/Llama-2-7b-chat-hf",
     token=os.getenv("HUGGINGFACEHUB_API_TOKEN")
 )
 
@@ -29,10 +25,13 @@ Output: [
 ]
 """
     try:
-        response = client.text_generation(prompt, max_new_tokens=256, temperature=0.1)
-        arr = re.search(r"\[.*\]", response, re.DOTALL)
-        if arr:
-            return json.loads(arr.group())
+        response = client.text_generation(prompt=prompt, max_new_tokens=256)
+        print("🧠 RAW RESPONSE FROM LLM:\n", response)  # 👈 Debug log
+
+        match = re.search(r"\[.*\]", response, re.DOTALL)
+        if match:
+            return json.loads(match.group())
+        else:
+            return {"error": "No JSON found", "raw": response}
     except Exception as e:
-        return {"error": str(e), "raw": response if 'response' in locals() else ""}
-    return {"error": "No output"}
+        return {"error": str(e), "raw": ""}
