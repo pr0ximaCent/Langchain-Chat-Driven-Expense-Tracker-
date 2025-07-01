@@ -1,10 +1,22 @@
-from langchain.prompts import PromptTemplate
-from langchain.chains import LLMChain
-from langchain_community.llms import HuggingFaceHub
+from huggingface_hub import InferenceClient
+import os
+import json
+import re
+from dotenv import load_dotenv
 
-prompt = PromptTemplate(
-    input_variables=["entry"],
-    template="""
+load_dotenv()
+
+# client = InferenceClient(
+#     "google/flan-t5-large",
+#     token=os.getenv("HUGGINGFACEHUB_API_TOKEN")
+# )
+client = InferenceClient(
+    "meta-llama/Llama-2-7b-chat-hf",
+    token=os.getenv("HUGGINGFACEHUB_API_TOKEN")
+)
+
+def parse_expense(entry: str):
+    prompt = f"""
 You are a finance assistant. Extract expenses from this message:
 "{entry}"
 Return a JSON array with fields 'item', 'amount', and 'category'.
@@ -16,21 +28,11 @@ Output: [
   {{"item": "groceries", "amount": 100, "category": "Food"}}
 ]
 """
-)
-
-def parse_expense(entry: str):
-    # Create LLM and chain INSIDE the function to ensure env is loaded
-    llm = HuggingFaceHub(
-        repo_id="google/flan-t5-large",
-        model_kwargs={"temperature": 0.1, "max_length": 256}
-    )
-    chain = LLMChain(llm=llm, prompt=prompt)
-    response = chain.run({"entry": entry})
     try:
-        import json, re
+        response = client.text_generation(prompt, max_new_tokens=256, temperature=0.1)
         arr = re.search(r"\[.*\]", response, re.DOTALL)
         if arr:
             return json.loads(arr.group())
     except Exception as e:
-        return {"error": "Failed to parse", "raw": response}
-    return {"error": "No output", "raw": response}
+        return {"error": str(e), "raw": response if 'response' in locals() else ""}
+    return {"error": "No output"}
