@@ -1,13 +1,8 @@
-import os
-import re
-import json
 from huggingface_hub import InferenceClient
-from dotenv import load_dotenv
-
-load_dotenv()
+import os, json, re
 
 client = InferenceClient(
-    model="meta-llama/Llama-2-7b-chat-hf",
+    model="google/flan-t5-large",
     token=os.getenv("HUGGINGFACEHUB_API_TOKEN")
 )
 
@@ -25,9 +20,8 @@ Output: [
 ]
 """
     try:
-        response = client.text_generation(prompt=prompt, max_new_tokens=256)
-        print("🧠 RAW RESPONSE FROM LLM:\n", response)  # 👈 Debug log
-
+        response = client.text_generation(prompt, max_new_tokens=256)
+        print("🔵 RAW MODEL OUTPUT:\n", response)  # << ADD THIS
         match = re.search(r"\[.*\]", response, re.DOTALL)
         if match:
             return json.loads(match.group())
