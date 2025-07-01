@@ -38,3 +38,13 @@ Thumbs.db
 # Test & Coverage
 coverage/
 *.coverage
+# Mongo-related
+mongo_test.py
+test_env.py
+
+# npm lock files (optional if you want cleaner commits)
+package-lock.json
+
+# Python virtual env fallback
+*.egg-info/
+pip-wheel-metadata/
