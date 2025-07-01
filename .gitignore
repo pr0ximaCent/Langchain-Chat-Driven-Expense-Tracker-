@@ -1,0 +1,29 @@
+# .gitignore
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.env.*
+*.sqlite3
+
+# VSCode and other editors
+.vscode/
+.idea/
+*.swp
+
+# Node
+node_modules/
+.next/
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+
+# Docker
+*.log
+
+# OS Files
+Thumbs.db
