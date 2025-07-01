@@ -1,6 +1,6 @@
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
-from langchain.llms import HuggingFaceHub
+from langchain_community.llms import HuggingFaceHub
 
 prompt = PromptTemplate(
     input_variables=["entry"],
@@ -18,20 +18,16 @@ Output: [
 """
 )
 
-# If you have HUGGINGFACEHUB_API_TOKEN in .env, it will use it.
-llm = HuggingFaceHub(
-    repo_id="google/flan-t5-large",  # Free model, good for text2text tasks
-    model_kwargs={"temperature": 0.1, "max_length": 256}
-)
-
-chain = LLMChain(llm=llm, prompt=prompt)
-
 def parse_expense(entry: str):
+    # Create LLM and chain INSIDE the function to ensure env is loaded
+    llm = HuggingFaceHub(
+        repo_id="google/flan-t5-large",
+        model_kwargs={"temperature": 0.1, "max_length": 256}
+    )
+    chain = LLMChain(llm=llm, prompt=prompt)
     response = chain.run({"entry": entry})
-    # Attempt to safely evaluate the JSON part from LLM response
     try:
         import json, re
-        # Extract just the JSON array from the response
         arr = re.search(r"\[.*\]", response, re.DOTALL)
         if arr:
             return json.loads(arr.group())
