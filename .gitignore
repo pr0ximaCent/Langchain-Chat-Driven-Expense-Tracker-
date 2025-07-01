@@ -10,7 +10,8 @@ __pycache__/
 *.sqlite3
 venv/
 backend/venv/
-
+.env
+.env.*
 # VSCode and other editors
 .vscode/
 .idea/
