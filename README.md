@@ -1,4 +1,3 @@
-"#Project Title" 
 # FinChain: Chat-Driven Expense Tracker with LangChain
 
 ## Stack

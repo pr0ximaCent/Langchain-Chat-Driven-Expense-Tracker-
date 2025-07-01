@@ -1,48 +1,67 @@
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
-from langchain_community.llms import HuggingFacePipeline
+from langchain_groq import ChatGroq
+import os
+import json
+import re
 
-from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, pipeline
-
+# Enhanced prompt for better JSON parsing
 prompt = PromptTemplate(
     input_variables=["entry"],
     template="""
-Extract all expense items with their name, amount, and best-fit category from this sentence.
+You are an expense parser. Extract all expense items from the given sentence.
 
 Sentence: "{entry}"
 
-Respond only in this JSON format (no explanation):
+Return ONLY a valid JSON array in this exact format:
+[{{"item": "item_name", "amount": number, "category": "category_name"}}]
 
-[{{"item": "...", "amount": ..., "category": "..."}}]
-"""
+Categories should be one of: Food, Transportation, Utilities, Entertainment, Shopping, Healthcare, Other
+
+Example: [{{"item": "groceries", "amount": 50, "category": "Food"}}]
+
+Response:"""
 )
 
-# Load model and tokenizer locally
-def get_local_llm():
-    model_name = "google/flan-t5-small"  # or flan-t5-base
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
-    model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
-    pipe = pipeline("text2text-generation", model=model, tokenizer=tokenizer, max_length=256)
-    return HuggingFacePipeline(pipeline=pipe)
+# Use Groq API - completely cloud-based, no local models
+llm = ChatGroq(
+    groq_api_key=os.environ["GROQ_API_KEY"],
+    model_name="llama3-8b-8192",  # Fast and efficient for parsing tasks
+    temperature=0.1,  # Low temperature for consistent JSON output
+    max_tokens=1000
+)
+
+chain = LLMChain(llm=llm, prompt=prompt)
 
 def parse_expense(entry: str):
-    llm = get_local_llm()
-    chain = LLMChain(llm=llm, prompt=prompt)
-    response = chain.run({"entry": entry})
-    print("RAW LLM OUTPUT:", response)  # For debugging, remove or comment out in production
-
-    import re, json, ast
-    arr = re.search(r"\[.*\]", response, re.DOTALL)
-    if arr:
-        array_text = arr.group()
-        # Try JSON parsing first
-        try:
-            return json.loads(array_text)
-        except Exception:
-            # If JSON fails, try literal_eval (handles single quotes, Pythonic lists)
+    """
+    Parse expense entry using Groq API
+    """
+    try:
+        print(f"Parsing entry: {entry}")
+        
+        # Call Groq API through LangChain
+        response = chain.run({"entry": entry})
+        print("RAW GROQ API RESPONSE:", response)
+        
+        # Clean and extract JSON
+        response_clean = response.strip()
+        
+        # Try to find JSON array in response
+        json_match = re.search(r'\[.*?\]', response_clean, re.DOTALL)
+        if json_match:
+            json_str = json_match.group()
             try:
-                return ast.literal_eval(array_text)
-            except Exception:
-                pass
-    # If nothing works, return the raw output for inspection
-    return {"error": "Failed to parse", "raw": response}
+                parsed_data = json.loads(json_str)
+                print("Successfully parsed JSON:", parsed_data)
+                return parsed_data
+            except json.JSONDecodeError as e:
+                print(f"JSON parsing failed: {e}")
+                return {"error": "Invalid JSON format", "raw": response}
+        else:
+            print("No JSON array found in response")
+            return {"error": "No JSON found", "raw": response}
+            
+    except Exception as e:
+        print(f"Error calling Groq API: {e}")
+        return {"error": f"API call failed: {str(e)}", "raw": ""}
