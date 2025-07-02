@@ -1,4 +1,4 @@
-##FinChain — The Chat-Driven Expense Tracker (Full Stack · Chatbot · NLP Analytics · Pinecone Semantic Search · FAST API)
+## FinChain — The Chat-Driven Expense Tracker (Full Stack · Chatbot · NLP Analytics · Pinecone Semantic Search · FAST API)
 
 
 **Imagine:** What if you could track and analyze your expenses just by _chatting in your own language_? No clunky dropdowns, no boring forms, no explicit category selection. Just say what you spent money on—**in any language, any style**—{Type “Spent 670 on burgers today”, “বার্গার খাইসি ১০০০ টাকা দিয়া”, or “Uber ride last night: 450”—FinChain extracts item, amount, and category, all powered by an LLM-based NLP backend] and FinChain’s AI does the rest: parses, extracts, categorizes, and gives you beautiful analytics. No more "finance apps" that you quit after two weeks. This is expense tracking, re-invented for real people.
