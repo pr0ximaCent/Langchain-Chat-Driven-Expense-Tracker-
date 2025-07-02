@@ -44,25 +44,6 @@ Traditional expense trackers die because:
 
 ---
 
-## 🖼️ Screenshots
-
-### Dashboard
-
-![Dashboard Screenshot](./Dashboard.PNG)
-
----
-
-### Spending Categories
-
-![Spending Categories](./speinding%20categories.PNG)
-
----
-
-### Latest Transactions
-
-![Transaction Reports](./transaction%20reports.PNG)
-
----
 
 ## 🧠 How it Works
 
@@ -164,29 +145,29 @@ Traditional expense trackers die because:
 ---
 
 ## 🛠️ Project Structure
-
+```
 finchain/
 ├── backend/
-│ ├── main.py # FastAPI entrypoint
-│ ├── db.py # MongoDB functions
-│ ├── nlp.py # LLM inference logic (LangChain, etc)
-│ ├── pinecone.py # Vector DB sync
-│ └── ... # More modules
+│   ├── main.py                # FastAPI entrypoint
+│   ├── db.py                  # MongoDB functions
+│   ├── nlp.py                 # LLM inference logic (LangChain, etc)
+│   ├── pinecone.py            # Vector DB sync
+│   └── ...                    # More modules
 │
 ├── frontend/
-│ ├── src/app/
-│ │ ├── page.tsx # Dashboard page (all React logic)
-│ │ └── components/
-│ │ └── AnalyticsDashboard.jsx
-│ ├── lib/
-│ │ └── api.js # API helpers for frontend-backend
-│ ├── public/
-│ │ └── ... # Static files, favicon, etc
-│ └── ... # Next.js setup
+│   ├── src/app/
+│   │   ├── page.tsx           # Dashboard page (all React logic)
+│   │   └── components/
+│   │       └── AnalyticsDashboard.jsx
+│   ├── lib/
+│   │   └── api.js             # API helpers for frontend-backend
+│   ├── public/
+│   │   └── ...                # Static files, favicon, etc
+│   └── ...                    # Next.js setup
 │
 ├── README.md
 └── ...
-
+```
 ---
 
 ## 🧑‍💻 Contributing
