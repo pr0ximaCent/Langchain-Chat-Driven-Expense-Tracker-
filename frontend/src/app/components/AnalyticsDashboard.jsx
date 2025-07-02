@@ -18,7 +18,7 @@ import {
   fetchCategoryAnalytics,
   fetchMonthlyAnalytics,
   fetchTotalAnalytics,
-} from "@/lib/api";
+} from "../../../lib/api";
 
 const COLORS = [
   "#0088FE",
