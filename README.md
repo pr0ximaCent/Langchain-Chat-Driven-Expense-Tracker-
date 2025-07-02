@@ -10,15 +10,15 @@
   Type _“Spent 670 on burgers today”_, _“বার্গার খাইসি ১০০০ টাকা দিয়া”_, or _“Uber ride last night: 450”_—FinChain extracts item, amount, and category, all powered by an LLM-based NLP backend.
 - **No Manual Categorization:**  
   You never have to pick categories, tags, or fill in forms. FinChain understands your text, auto-categorizes, and keeps learning.
-- **Full-Stack Power:**  
+- **Full-Stack Power:**
   - **Backend:** FastAPI (Python), async REST, MongoDB (expense storage), Pinecone (vector/semantic search for future AI queries).
   - **Frontend:** Next.js (React), Tailwind, Recharts, Lucide icons—pixel-perfect, modern dashboard UI.
   - **AI/NLP:** Hugging Face Transformers, LangChain, ONNX+TensorRT (GPU optimized inference coming soon!)
-- **Beautiful Analytics:**  
+- **Beautiful Analytics:**
   - Auto-generated pie/bar charts, totals, monthly breakdowns.
   - “Latest transactions” view with full NLP parsing results.
   - Filter, search, and semantic queries planned.
-- **Plug-and-Play:**  
+- **Plug-and-Play:**
   - Easy to deploy via Docker.
   - CI/CD ready, ready for cloud (Render, Vercel, etc).
 
@@ -27,11 +27,13 @@
 ## 💡 Why FinChain?
 
 Traditional expense trackers die because:
+
 - You have to **explicitly categorize** every entry.
 - The UI/UX is boring, repetitive, and forces you to adapt.
 - Multi-language, unstructured chat input is _never_ supported.
 
 **FinChain flips this:**
+
 - _You_ write in your own words, any language.
 - The AI handles parsing, categorizing, and presenting analytics.
 - You stay consistent, get value, and enjoy the process!
@@ -65,9 +67,9 @@ Traditional expense trackers die because:
 - **Input:** You type _any expense in any language_.
 - **LLM Chain:**  
   The backend uses Hugging Face Transformers (e.g., flan-t5-small, and upgradable) through LangChain, and runs inference (soon via ONNX+TensorRT for speed) to extract:
-    - **item:** What did you spend on?  
-    - **amount:** How much?  
-    - **category:** What type of expense? (Food, Transport, Shopping, etc—learned by the AI).
+  - **item:** What did you spend on?
+  - **amount:** How much?
+  - **category:** What type of expense? (Food, Transport, Shopping, etc—learned by the AI).
 - **Storage:**  
   Parsed results and original text are stored in **MongoDB** (fully queryable, exportable).
 - **Analytics:**  
@@ -79,13 +81,13 @@ Traditional expense trackers die because:
 
 ## ⚙️ Stack
 
-| Layer      | Tech                              |
-|------------|-----------------------------------|
-| Backend    | FastAPI (Python, async REST)      |
-| AI/NLP     | Hugging Face Transformers, LangChain, ONNX/TensorRT |
-| Storage    | MongoDB (expenses), Pinecone (vector search) |
-| Frontend   | Next.js (React), Tailwind, Recharts, Lucide |
-| Deploy     | Docker, Vercel/Render (planned)   |
+| Layer    | Tech                                                |
+| -------- | --------------------------------------------------- |
+| Backend  | FastAPI (Python, async REST)                        |
+| AI/NLP   | Hugging Face Transformers, LangChain, ONNX/TensorRT |
+| Storage  | MongoDB (expenses), Pinecone (vector search)        |
+| Frontend | Next.js (React), Tailwind, Recharts, Lucide         |
+| Deploy   | Docker, Vercel/Render (planned)                     |
 
 ---
 
@@ -117,41 +119,43 @@ Traditional expense trackers die because:
 ## 🚀 Getting Started
 
 1. **Clone the repo & install:**
-    ```bash
-    git clone https://github.com/yourusername/finchain.git
-    cd finchain
-    ```
+
+   ```bash
+   git clone https://github.com/yourusername/finchain.git
+   cd finchain
+   ```
 
 2. **Backend:**
-    - Install dependencies:
-      ```bash
-      cd backend
-      python -m venv venv
-      source venv/bin/activate  # or venv\Scripts\activate
-      pip install -r requirements.txt
-      ```
-    - Set up your `.env`:
-      ```
-      MONGO_URI=mongodb+srv://...       # Your MongoDB Atlas URI
-      GROQ_API_KEY=...                  # Or Hugging Face key for LLM inference
-      PINECONE_API_KEY=...              # (Optional for semantic search)
-      ```
-    - Run FastAPI:
-      ```bash
-      uvicorn main:app --reload
-      ```
+
+   - Install dependencies:
+     ```bash
+     cd backend
+     python -m venv venv
+     source venv/bin/activate  # or venv\Scripts\activate
+     pip install -r requirements.txt
+     ```
+   - Set up your `.env`:
+     ```
+     MONGO_URI=mongodb+srv://...       # Your MongoDB Atlas URI
+     GROQ_API_KEY=...                  # Or Hugging Face key for LLM inference
+     PINECONE_API_KEY=...              # (Optional for semantic search)
+     ```
+   - Run FastAPI:
+     ```bash
+     uvicorn main:app --reload
+     ```
 
 3. **Frontend:**
-    - Install dependencies:
-      ```bash
-      cd frontend
-      npm install
-      ```
-    - Run Next.js app:
-      ```bash
-      npm run dev
-      ```
-    - Go to [http://localhost:3000](http://localhost:3000)
+   - Install dependencies:
+     ```bash
+     cd frontend
+     npm install
+     ```
+   - Run Next.js app:
+     ```bash
+     npm run dev
+     ```
+   - Go to [http://localhost:3000](http://localhost:3000)
 
 ---
 
@@ -179,7 +183,6 @@ finchain/
 ├── README.md
 └── ...
 
-
 ---
 
 ## 🧑‍💻 Contributing
@@ -204,6 +207,7 @@ MIT
 ## 📷 Attachments
 
 Screenshots:
+
 - ![Dashboard](./Dashboard.PNG)
 - ![Spending Categories](./speinding%20categories.PNG)
 - ![Transaction Reports](./transaction%20reports.PNG)
