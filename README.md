@@ -8,11 +8,8 @@
 ![Dashboard](https://github.com/user-attachments/assets/81c77951-4769-477c-9448-dd35bcbb8945)
 
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/d7e07ea9-0803-4953-b370-765bba5f5443" alt="Spending Categories" width="45%" />
-  <img src="https://github.com/user-attachments/assets/3b134dda-ab24-4aa4-bac6-88913e092723" alt="Transaction Reports" width="45%" />
-</p>
-
+![Spending Categories](https://github.com/user-attachments/assets/d7e07ea9-0803-4953-b370-765bba5f5443)
+![Transaction Reports](https://github.com/user-attachments/assets/3b134dda-ab24-4aa4-bac6-88913e092723)
 
 
 
