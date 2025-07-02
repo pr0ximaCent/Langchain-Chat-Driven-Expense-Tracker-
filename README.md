@@ -6,10 +6,10 @@
 ---
 
 -![Dashboard](https://github.com/user-attachments/assets/b647fbb8-bc3b-4800-bf7e-5f3921ccadad)
-<p align="center">
-![Spending Categories](https://github.com/user-attachments/assets/4efc69a6-ab70-4239-a5f2-1d312c1f126a)
-![Transaction Reports](https://github.com/user-attachments/assets/2b72cf7e-4d99-45a4-8b7c-b5b73749dd4d)
 
+<p align="center">
+![Spending Categories](https://github.com/user-attachments/assets/d7e07ea9-0803-4953-b370-765bba5f5443)
+![Transaction Reports](https://github.com/user-attachments/assets/3b134dda-ab24-4aa4-bac6-88913e092723)
 </p>
 
 
