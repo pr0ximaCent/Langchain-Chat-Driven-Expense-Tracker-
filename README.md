@@ -1,192 +1,213 @@
-🚀 FinChain — Chat-Driven Expense Tracker
-A full-stack, modern expense tracker where you log expenses in natural language, get them automatically parsed and categorized by LLMs, store all data in MongoDB, enable semantic search with Pinecone, and visualize insights through a rich Next.js dashboard UI.
+# 🚀 FinChain — The Chat-Driven Expense Tracker (NLP x Full Stack x Analytics)
 
-🌟 Features
-Chat-Driven Input: Log expenses in plain English, e.g. “Spent 450 on Uber and snacks”.
+> **Imagine:** What if you could track and analyze your expenses just by _chatting in your own language_? No clunky dropdowns, no boring forms, no explicit category selection. Just say what you spent money on—**in any language, any style**—and FinChain’s AI does the rest: parses, extracts, categorizes, and gives you beautiful analytics. No more "finance apps" that you quit after two weeks. This is expense tracking, re-invented for real people.
 
-Automated Parsing: Local LLM (transformers, ONNX, or TensorRT-optimized) extracts item, amount, and category.
+---
 
-Categorization: Model assigns category on the fly (e.g. Food, Transport, etc.).
+## ✨ Features
 
-Persistent Storage: Expenses saved to MongoDB.
+- **Chat Your Expenses, Any Language:**  
+  Type _“Spent 670 on burgers today”_, _“বার্গার খাইসি ১০০০ টাকা দিয়া”_, or _“Uber ride last night: 450”_—FinChain extracts item, amount, and category, all powered by an LLM-based NLP backend.
+- **No Manual Categorization:**  
+  You never have to pick categories, tags, or fill in forms. FinChain understands your text, auto-categorizes, and keeps learning.
+- **Full-Stack Power:**  
+  - **Backend:** FastAPI (Python), async REST, MongoDB (expense storage), Pinecone (vector/semantic search for future AI queries).
+  - **Frontend:** Next.js (React), Tailwind, Recharts, Lucide icons—pixel-perfect, modern dashboard UI.
+  - **AI/NLP:** Hugging Face Transformers, LangChain, ONNX+TensorRT (GPU optimized inference coming soon!)
+- **Beautiful Analytics:**  
+  - Auto-generated pie/bar charts, totals, monthly breakdowns.
+  - “Latest transactions” view with full NLP parsing results.
+  - Filter, search, and semantic queries planned.
+- **Plug-and-Play:**  
+  - Easy to deploy via Docker.
+  - CI/CD ready, ready for cloud (Render, Vercel, etc).
 
-Semantic Search: Pinecone enables searching by meaning, not just exact words (coming up).
+---
 
-Rich Analytics UI: Stylish Next.js dashboard with charts (Recharts), category summaries, and recent expenses.
+## 💡 Why FinChain?
 
-Modern Dev Workflow: FastAPI backend, Next.js frontend, Dockerized development, CI/CD-ready.
+Traditional expense trackers die because:
+- You have to **explicitly categorize** every entry.
+- The UI/UX is boring, repetitive, and forces you to adapt.
+- Multi-language, unstructured chat input is _never_ supported.
 
-🖥️ Tech Stack
-Layer	Tech
-Frontend	Next.js (React, Tailwind, Recharts, Lucide)
-Backend	FastAPI (Python, async, REST)
-Parsing/AI	LangChain + HuggingFace Transformers, ONNX, TensorRT (GPU)
-Storage	MongoDB Atlas
-Vector Search	Pinecone
-DevOps	Docker, Git, CI/CD
+**FinChain flips this:**
+- _You_ write in your own words, any language.
+- The AI handles parsing, categorizing, and presenting analytics.
+- You stay consistent, get value, and enjoy the process!
 
-📁 Project Structure
-bash
-Copy
-Edit
-FinChain/
+---
+
+## 🖼️ Screenshots
+
+### Dashboard
+
+![Dashboard Screenshot](./Dashboard.PNG)
+
+---
+
+### Spending Categories
+
+![Spending Categories](./speinding%20categories.PNG)
+
+---
+
+### Latest Transactions
+
+![Transaction Reports](./transaction%20reports.PNG)
+
+---
+
+## 🧠 How it Works
+
+### 1. **NLP-Driven Parsing**
+
+- **Input:** You type _any expense in any language_.
+- **LLM Chain:**  
+  The backend uses Hugging Face Transformers (e.g., flan-t5-small, and upgradable) through LangChain, and runs inference (soon via ONNX+TensorRT for speed) to extract:
+    - **item:** What did you spend on?  
+    - **amount:** How much?  
+    - **category:** What type of expense? (Food, Transport, Shopping, etc—learned by the AI).
+- **Storage:**  
+  Parsed results and original text are stored in **MongoDB** (fully queryable, exportable).
+- **Analytics:**  
+  Realtime analytics and charts are auto-generated from the parsed/categorized data.
+- **(Planned) Semantic Search:**  
+  Pinecone vector DB integration allows “fuzzy” AI queries like _“Show me all Uber rides this year”_ even if your input text never matched “Uber” exactly.
+
+---
+
+## ⚙️ Stack
+
+| Layer      | Tech                              |
+|------------|-----------------------------------|
+| Backend    | FastAPI (Python, async REST)      |
+| AI/NLP     | Hugging Face Transformers, LangChain, ONNX/TensorRT |
+| Storage    | MongoDB (expenses), Pinecone (vector search) |
+| Frontend   | Next.js (React), Tailwind, Recharts, Lucide |
+| Deploy     | Docker, Vercel/Render (planned)   |
+
+---
+
+## 🚦 Current Status
+
+- [x] **Fully working backend:** Expense parsing via NLP, saving to MongoDB.
+- [x] **Modern dashboard UI:** Analytics, charts, and transaction feed.
+- [x] **No manual categories:** LLM auto-categorizes entries, even in Bangla.
+- [x] **All APIs connected:** Frontend-backend integration complete.
+- [x] **Data visualizations:** Pie/bar charts, summary cards.
+- [x] **NLP extraction is language-agnostic.**
+- [x] **Pinecone and ONNX/TensorRT groundwork complete.**
+- [ ] **(Next Up)** Semantic search, budget/goal modules, more advanced analytics.
+
+---
+
+## 📅 What’s Next
+
+- **ONNX/TensorRT** for GPU-accelerated, low-latency inference.
+- **Budget and goal setting**: set, track, and visualize financial targets.
+- **Semantic AI Search**: Ask “How much did I spend on food in June?”—get an answer instantly.
+- **Auto-learning categories**: Model adapts to your spending style.
+- **Mobile-first responsive UI.**
+- **Cloud deployment demo (Render/Vercel).**
+- **Export, sharing, multi-user support.**
+
+---
+
+## 🚀 Getting Started
+
+1. **Clone the repo & install:**
+    ```bash
+    git clone https://github.com/yourusername/finchain.git
+    cd finchain
+    ```
+
+2. **Backend:**
+    - Install dependencies:
+      ```bash
+      cd backend
+      python -m venv venv
+      source venv/bin/activate  # or venv\Scripts\activate
+      pip install -r requirements.txt
+      ```
+    - Set up your `.env`:
+      ```
+      MONGO_URI=mongodb+srv://...       # Your MongoDB Atlas URI
+      GROQ_API_KEY=...                  # Or Hugging Face key for LLM inference
+      PINECONE_API_KEY=...              # (Optional for semantic search)
+      ```
+    - Run FastAPI:
+      ```bash
+      uvicorn main:app --reload
+      ```
+
+3. **Frontend:**
+    - Install dependencies:
+      ```bash
+      cd frontend
+      npm install
+      ```
+    - Run Next.js app:
+      ```bash
+      npm run dev
+      ```
+    - Go to [http://localhost:3000](http://localhost:3000)
+
+---
+
+## 🛠️ Project Structure
+
+finchain/
 ├── backend/
-│   ├── main.py              # FastAPI entrypoint
-│   ├── db.py                # MongoDB connection logic
-│   ├── pinecone_utils.py    # Pinecone vector search logic
-│   └── ...                  # LLM/chain parsing, routes
+│ ├── main.py # FastAPI entrypoint
+│ ├── db.py # MongoDB functions
+│ ├── nlp.py # LLM inference logic (LangChain, etc)
+│ ├── pinecone.py # Vector DB sync
+│ └── ... # More modules
+│
 ├── frontend/
-│   ├── src/
-│   │   ├── app/
-│   │   │   ├── page.tsx                   # Main dashboard page (Next.js)
-│   │   │   ├── components/
-│   │   │   │   └── AnalyticsDashboard.jsx # Dashboard analytics and charts
-│   │   ├── lib/
-│   │   │   └── api.js                     # All frontend API calls
-│   │   └── ...                            # Styles, layouts, assets
-│   └── ...
-├── .env                 # Env vars for API keys, DB, etc.
-├── README.md            # This file!
+│ ├── src/app/
+│ │ ├── page.tsx # Dashboard page (all React logic)
+│ │ └── components/
+│ │ └── AnalyticsDashboard.jsx
+│ ├── lib/
+│ │ └── api.js # API helpers for frontend-backend
+│ ├── public/
+│ │ └── ... # Static files, favicon, etc
+│ └── ... # Next.js setup
+│
+├── README.md
 └── ...
-🏁 How It Works
-User enters an expense in chat (frontend).
 
-Frontend POSTs entry to /parse_expense endpoint (FastAPI backend).
 
-Backend:
+---
 
-Calls the local LLM chain to extract item, amount, category.
+## 🧑‍💻 Contributing
 
-Stores parsed result in MongoDB.
+PRs welcome! See `CONTRIBUTING.md` or open an issue.
 
-(Coming up) Generates vector embedding and stores in Pinecone for semantic search.
+---
 
-Frontend pulls expenses and analytics from backend for dashboards/charts.
+## 📜 License
 
-✨ Current UI & API Overview
-Frontend (Next.js):
-Dashboard: Modern, dark, analytics-first UI with charts, category splits, and recent expense list.
+MIT
 
-Add Expense: Smart textarea for natural language input.
+---
 
-Charts: Bar and Pie (with anti-cropping fix) using Recharts.
+## 🏆 Credits
 
-Sidebar Navigation: Icons for Dashboard, Transactions, Analytics, Budget, Goals.
+- [Sabik Aftahee](https://github.com/synuso) (Lead dev, NLP/backend/frontend)
+- [OpenAI, Hugging Face, Pinecone](https://huggingface.co) (AI/infra)
 
-Backend (FastAPI):
-/parse_expense: POST, takes natural language, returns parsed info and saves it.
+---
 
-/expenses: GET, returns all expenses.
+## 📷 Attachments
 
-/analytics/category: GET, returns category-wise totals.
+Screenshots:
+- ![Dashboard](./Dashboard.PNG)
+- ![Spending Categories](./speinding%20categories.PNG)
+- ![Transaction Reports](./transaction%20reports.PNG)
 
-/analytics/monthly: GET, returns month-wise totals.
+---
 
-/analytics/total: GET, returns total spending.
-
-/query_expenses: GET, (coming up) semantic search for expenses.
-
-🛠️ Running Locally
-1. Backend
-
-bash
-Copy
-Edit
-cd backend
-python -m venv venv && source venv/bin/activate  # or activate for Windows
-pip install -r requirements.txt
-export MONGO_URI=...
-export PINECONE_API_KEY=...
-uvicorn main:app --reload
-2. Frontend
-
-bash
-Copy
-Edit
-cd frontend
-npm install
-npm run dev
-# Visit http://localhost:3000
-🔑 Environment Variables
-MONGO_URI — Your MongoDB Atlas connection string
-
-PINECONE_API_KEY — Your Pinecone vector DB API key
-
-GROQ_API_KEY or HF/other — For LLM access (if cloud model used)
-
-(Others as needed)
-
-🧠 Current Model/Chain
-Local LLM (e.g., flan-t5-small or Falcon) via Transformers or ONNX, optimized for speed.
-
-Custom prompt to extract items/amounts/categories from arbitrary chat input.
-
-📊 Sample API Calls
-Add an expense:
-
-bash
-Copy
-Edit
-curl -X POST http://localhost:8000/parse_expense -H "Content-Type: application/json" -d '{"entry":"Spent 500 on lunch"}'
-Get all expenses:
-
-bash
-Copy
-Edit
-curl http://localhost:8000/expenses
-🎨 Screenshots
-Paste UI screenshots here!
-Showcase your dashboard, charts, and input UX.
-
-🚦 What’s Next (Planned Updates)
-Backend
- Enable Semantic Search:
-Integrate Pinecone for /query_expenses (search with meaning, e.g., “snacks last week”).
-
- Advanced Model Inference:
-Switch to ONNX/TensorRT for blazing-fast, GPU-accelerated parsing.
-
- Model Improvement:
-Experiment with better extraction LLMs or hybrid (rules+AI) pipelines.
-
- API Security:
-Auth, rate-limiting, user separation (optional).
-
-Frontend
- Analytics Expansion:
-Add more filters, trends, and predictive insights (charts over time, budget goals, breakdowns).
-
- Full Transaction Table:
-Interactive, searchable, paginated expense table (not just recent).
-
- UI Polish:
-More animations, color themes, mobile responsiveness, onboarding tips.
-
- Semantic Search Bar:
-Enter queries like “food in June” and see smart results.
-
-DevOps
- Dockerize Everything:
-Full local deployment, single-command spinup.
-
- CI/CD Pipeline:
-GitHub Actions for auto-testing and deploy.
-
- Free Demo Deploy:
-Host backend (Render.com) + frontend (Vercel) for public preview.
-
-💡 Contributing
-PRs welcome!
-
-Open an issue or feature request.
-
-Fork, branch, and PR!
-
-👤 Author
-Sabik Aftahee
-Based in CUET. Contact: [Your email/LinkedIn]
-Researcher, AI/ML/NLP enthusiast, full-stack developer.
-
-📚 License
-MIT (or your choice).
-
+**FinChain — Track expenses the way _you_ actually talk. Stop categorizing. Start understanding.**
