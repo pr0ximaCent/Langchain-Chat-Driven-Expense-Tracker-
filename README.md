@@ -23,9 +23,39 @@
   - Auto-generated pie/bar charts, totals, monthly breakdowns.
   - “Latest transactions” view with full NLP parsing results.
   - Filter, search, and semantic queries planned.
-- **Plug-and-Play:**
-  - Easy to deploy via Docker.
-  - CI/CD ready, ready for cloud (Render, Vercel, etc).
+ 
+## 🛠️ Tech Stack
+
+### 🔧 Backend
+- **FastAPI** (Python)
+- **LangChain** (LLM)
+- **MongoDB**
+- **Pinecone** (Vector DB for semantic search)
+- **Docker** (for deployment)
+
+### 🖥️ Frontend
+- **Next.js** (React)
+- **Tailwind CSS**
+- **Recharts** (for charts & graphs)
+
+### 📡 APIs
+- **RESTful endpoints**:
+  - `/parse_expense`
+  - `/expenses`
+  - `/analytics/category`
+  - `/analytics/monthly`
+  - `/analytics/total`
+  - `/query_expenses`
+
+### 🤖 NLP / LLMs
+- Current: **Groq / Flan-T5 / HuggingFace Transformers**
+- Future: **ONNX** / **TensorRT** optimized **local inference**
+
+### 🚀 Deployment
+- **Docker-ready**
+- Deploy backend to **Render.com**
+- Deploy frontend to **Vercel**
+
 
 ---
 
