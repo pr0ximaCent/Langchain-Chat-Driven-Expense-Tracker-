@@ -17,7 +17,7 @@ import {
 } from "../../lib/api";
 
 // Utility for comma formatting
-function formatCurrency(n: number) {
+function formatCurrency(n) {
   return n.toLocaleString("en-US");
 }
 
@@ -34,32 +34,36 @@ export default function FinancialDashboard() {
 
   // Fetch all analytics & expenses
   async function loadAll() {
-    const [exp, cat, mon, tot] = await Promise.all([
-      fetchExpenses(),
-      fetchCategoryAnalytics(),
-      fetchMonthlyAnalytics(),
-      fetchTotalAnalytics()
-    ]);
-    setExpenses(exp);
-    setCategoryData(
-      cat.map((c: any) => ({
-        name: c.category,
-        value: c.total,
-        color: COLORS[categoryColorsIdx(c.category)],
-      }))
-    );
-    setMonthlyData(
-      mon.map((m: any) => ({
-        month: `${m.month}/${m.year}`,
-        amount: m.total,
-      }))
-    );
-    setTotal(tot.total || 0);
+    try {
+      const [exp, cat, mon, tot] = await Promise.all([
+        fetchExpenses(),
+        fetchCategoryAnalytics(),
+        fetchMonthlyAnalytics(),
+        fetchTotalAnalytics()
+      ]);
+      
+      setExpenses(exp);
+      setCategoryData(
+        cat.map((c) => ({
+          name: c.category,
+          value: c.total,
+          color: COLORS[categoryColorsIdx(c.category)],
+        }))
+      );
+      setMonthlyData(
+        mon.map((m) => ({
+          month: `${m.month}/${m.year}`,
+          amount: m.total,
+        }))
+      );
+      setTotal(tot.total || 0);
+    } catch (error) {
+      console.error("Error loading data:", error);
+    }
   }
 
   useEffect(() => {
     loadAll();
-    // eslint-disable-next-line
   }, []);
 
   // Add expense handler
@@ -67,10 +71,17 @@ export default function FinancialDashboard() {
     if (!entry.trim()) return;
     setLoading(true);
     setResponse("");
-    const result = await postExpense(entry);
-    setEntry("");
-    setResponse(result.status === "saved" ? "Expense added successfully!" : (result.error || "Something went wrong."));
-    await loadAll();
+    
+    try {
+      const result = await postExpense(entry);
+      setEntry("");
+      setResponse(result.status === "saved" ? "Expense added successfully!" : (result.error || "Something went wrong."));
+      await loadAll();
+    } catch (error) {
+      console.error("Error adding expense:", error);
+      setResponse("Failed to add expense. Please try again.");
+    }
+    
     setLoading(false);
     setTimeout(() => setResponse(""), 3000);
   };
@@ -79,7 +90,8 @@ export default function FinancialDashboard() {
   const COLORS = [
     "#3B82F6", "#10B981", "#F59E0B", "#EF4444", "#8B5CF6", "#6B7280", "#FFBB28"
   ];
-  function categoryColorsIdx(cat: string) {
+  
+  function categoryColorsIdx(cat) {
     switch ((cat || "").toLowerCase()) {
       case "food": return 0;
       case "transportation": return 1;
@@ -316,17 +328,17 @@ export default function FinancialDashboard() {
                 </button>
               </div>
               
-              {/* FIXED: Increased container size and added padding */}
+              {/* Pie Chart */}
               <div className="flex justify-center mb-6">
-                <div className="relative w-80 h-80" style={{ padding: '20px' }}>
+                <div className="relative w-[800px] h-[500px]" style={{ padding: '20px' }}>
                   <ResponsiveContainer width="100%" height="100%">
                     <RechartsPieChart>
                       <Pie
                         data={categoryData}
                         cx="50%"
                         cy="50%"
-                        innerRadius={60}
-                        outerRadius={90}
+                        innerRadius={80}
+                        outerRadius={120}
                         paddingAngle={2}
                         dataKey="value"
                         label={({ name, value }) => `${name}: ৳${value}`}
@@ -353,6 +365,7 @@ export default function FinancialDashboard() {
                 ))}
               </div>
             </div>
+            
             {/* Latest Transactions */}
             <div className="bg-[#1A1D29] border border-gray-800 rounded-xl p-6">
               <div className="flex items-center justify-between mb-6">
