@@ -1,4 +1,4 @@
-# 🚀 FinChain — The Chat-Driven Expense Tracker (NLP x Full Stack x Analytics)
+# 🚀 FinChain — The Chat-Driven Expense Tracker (Full Stack x AI Bot)
 
 > **Imagine:** What if you could track and analyze your expenses just by _chatting in your own language_? No clunky dropdowns, no boring forms, no explicit category selection. Just say what you spent money on—**in any language, any style**—and FinChain’s AI does the rest: parses, extracts, categorizes, and gives you beautiful analytics. No more "finance apps" that you quit after two weeks. This is expense tracking, re-invented for real people.
 
