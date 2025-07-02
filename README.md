@@ -6,8 +6,12 @@
 ---
 
 -![Dashboard](https://github.com/user-attachments/assets/b647fbb8-bc3b-4800-bf7e-5f3921ccadad)
--![Rransaction Reports](https://github.com/user-attachments/assets/752ded8a-62f4-49a7-9b06-7dd5694a516b)
--![speinding categories](https://github.com/user-attachments/assets/aa68408a-74aa-41e1-9494-9eb1efa740e1)
+<p align="center">
+![Spending Categories](https://github.com/user-attachments/assets/4efc69a6-ab70-4239-a5f2-1d312c1f126a)
+![Transaction Reports](https://github.com/user-attachments/assets/2b72cf7e-4d99-45a4-8b7c-b5b73749dd4d)
+
+</p>
+
 
 ## ✨ Features
 
