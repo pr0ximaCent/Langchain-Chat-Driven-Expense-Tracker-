@@ -63,6 +63,35 @@
 
 ---
 
+## Requirements
+
+Before running or deploying FinChain, ensure you have the following prerequisites and minimum hardware:
+
+### Hardware Requirements
+
+- **CPU**: Any modern 64-bit processor (Intel/AMD/Apple Silicon)
+- **RAM**: At least **4 GB** (8 GB+ recommended for smoother development, especially if running backend + frontend + Docker locally)
+- **Disk Space**: Minimum **2 GB** free for dependencies, source code, and Docker images
+- **Internet**: Required for API calls (Pinecone, MongoDB Atlas, LLM providers) and NPM/Python installations
+- **GPU**: *Not required* unless you want to run heavy ML models locally (all LLM/NLP is handled via APIs by default)
+
+### Backend (FastAPI)
+
+- **Python 3.9+** (preferably 3.10)
+- **pip** (Python package installer)
+- **MongoDB Atlas** database (connection URI in `.env`)
+- **Pinecone** account and API key
+- **Docker** (optional, for containerized deployment)
+- **Git** (to clone or pull the repository)
+- **Uvicorn** (installed via requirements.txt)
+
+#### Python Dependencies
+
+Install with:
+```bash
+pip install -r requirements.txt
+```
+---
 ## 💡 Why FinChain?
 
 Traditional expense trackers die because:
