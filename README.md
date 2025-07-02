@@ -5,7 +5,7 @@
 
 ---
 
--![Dashboard](https://github.com/user-attachments/assets/81c77951-4769-477c-9448-dd35bcbb8945)
+![Dashboard](https://github.com/user-attachments/assets/81c77951-4769-477c-9448-dd35bcbb8945)
 
 
 ![Spending Categories](https://github.com/user-attachments/assets/d7e07ea9-0803-4953-b370-765bba5f5443)
