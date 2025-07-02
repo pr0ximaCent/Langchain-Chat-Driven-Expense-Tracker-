@@ -5,12 +5,12 @@
 
 ---
 
--![Dashboard](https://github.com/user-attachments/assets/b647fbb8-bc3b-4800-bf7e-5f3921ccadad)
+-![Dashboard](https://github.com/user-attachments/assets/81c77951-4769-477c-9448-dd35bcbb8945)
 
-<p align="center">
+
 ![Spending Categories](https://github.com/user-attachments/assets/d7e07ea9-0803-4953-b370-765bba5f5443)
 ![Transaction Reports](https://github.com/user-attachments/assets/3b134dda-ab24-4aa4-bac6-88913e092723)
-</p>
+
 
 
 ## ✨ Features
