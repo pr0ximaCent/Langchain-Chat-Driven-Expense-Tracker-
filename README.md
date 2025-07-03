@@ -57,9 +57,68 @@
 
 ### 🚀 Deployment
 - **Docker-ready**
-- Deploy backend to **Render.com**
+- Deploy backend to **GCP** (ON dev)
 - Deploy frontend to **Vercel**
 
+---
+
+## 🏁 Run FinChain Locally
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/finchain.git
+cd finchain
+```
+
+---
+
+### 2. Backend Setup (FastAPI)
+
+```bash
+cd backend
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+Create a `.env` file in the `backend` directory with your config:
+
+```ini
+MONGO_URI=your_mongodb_atlas_uri
+GROQ_API_KEY=your_groq_api_key   # or Hugging Face key if using HF inference
+PINECONE_API_KEY=your_pinecone_api_key  # optional, for semantic search
+```
+
+Run the backend locally:
+
+```bash
+uvicorn main:app --reload
+```
+
+---
+
+### 3. Frontend Setup (Next.js)
+
+```bash
+cd ../frontend
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+### 📄 Notes
+
+* Make sure you have **Python 3.8+** and **Node.js 16+** installed.
+* For semantic search, you need valid Pinecone and embedding API keys.
+* You can run backend and frontend on the same or different machines.
+
+---
+
+**For any issues, open an issue or reach out via email/GitHub!**
 
 ---
 
